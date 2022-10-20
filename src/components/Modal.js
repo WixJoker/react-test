@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 
-class Modal extends React.Component {
+class Modal extends Component {
   state = {
     visible: false,
   };
@@ -12,14 +12,15 @@ class Modal extends React.Component {
   };
 
   render() {
+    const { visible } = this.state;
     return (
       <>
         <div>
-          <button type="button" onClick={this.toggle}>
-            Toggle
+          <button type="button" onMouseOver={this.toggle} onClick={this.toggle}>
+            {visible ? "Close" : "Open"}
           </button>
         </div>
-        {this.state.visible && (
+        {visible && (
           <div className="modal">
             <p>Hello world!!!</p>
           </div>

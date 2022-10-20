@@ -1,7 +1,7 @@
-import React from "react";
-import Controls from "./Controls";
+import React, { Component } from "react";
+import Controls from "../Controls";
 
-class Counter extends React.Component {
+class Counter extends Component {
   static defaultProps = {
     initialValue: 0,
   };
@@ -29,10 +29,11 @@ class Counter extends React.Component {
   };
 
   render() {
+    const { value } = this.state;
     return (
       <>
         <div>
-          <span>{this.state.value}</span>
+          <span>{value}</span>
         </div>
         <Controls
           onDecrement={this.handleDecrement}
