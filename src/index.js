@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createContext } from "react";
 import "./index.css";
 import App from "./App";
 
-const MyContext = createContext();
+import { BrowserRouter } from "react-roter-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <MyContext.Provider>
+  <BrowserRouter>
     <App />
-  </MyContext.Provider>
+  </BrowserRouter>
 );
