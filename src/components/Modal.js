@@ -5,17 +5,28 @@ class Modal extends React.Component {
     visible: false,
   };
 
+  toggle = () => {
+    this.setState((prevState) => ({
+      visible: !prevState.visible,
+    }));
+  };
+
   render() {
     return (
       <>
         <div>
-          <button>Open</button>
+          <button type="button" onClick={this.toggle}>
+            Toggle
+          </button>
         </div>
-        <div className="modal">
-          <p>Hello world!!!</p>
-        </div>
+        {this.state.visible && (
+          <div className="modal">
+            <p>Hello world!!!</p>
+          </div>
+        )}
       </>
     );
   }
 }
+
 export default Modal;
