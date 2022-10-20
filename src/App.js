@@ -16,10 +16,16 @@ class App extends Component {
   state = {
     todos: [
       { id: "1", description: "HTML", completed: false },
-      { id: "2", description: "CSS", completed: false },
+      { id: "2", description: "CSS", completed: true },
       { id: "3", description: "JS", completed: false },
-      { id: "4", description: "React", completed: false },
+      { id: "4", description: "React", completed: true },
     ],
+  };
+
+  deleteItem = (todoId) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.filter((todo) => todo.id !== todoId),
+    }));
   };
 
   render() {
@@ -29,7 +35,15 @@ class App extends Component {
         <Counter initialValue={10} />
         <Modal />
         <ColorPicker options={colorPickerOption} />
-        <ToDoList todos={todos} />
+        <div>
+          <p>Total amount of todo: {todos.length}</p>
+          <p>
+            Amount of executed todo:{" "}
+            {/* {todos.filter((todo) => todo.completed).length} */}
+            {todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0)}
+          </p>
+        </div>
+        <ToDoList todos={todos} onDeleteToDo={this.deleteItem} />
       </div>
     );
   }
