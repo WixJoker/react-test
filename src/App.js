@@ -1,8 +1,10 @@
+import React from "react";
 import { Component } from "react";
 import Counter from "./components/Counter";
 import Modal from "./components/Modal";
 import ColorPicker from "./components/ColorPicker";
 import ToDoList from "./components/ToDoList";
+import Form from "./components/Form";
 
 const colorPickerOption = [
   { label: "blue", color: "blue" },
@@ -28,22 +30,29 @@ class App extends Component {
     }));
   };
 
+  formSubmitHandler = (data) => {
+    console.log(data);
+};
+
   render() {
     const { todos } = this.state;
     return (
       <div>
-        <Counter initialValue={10} />
-        <Modal />
-        <ColorPicker options={colorPickerOption} />
-        <div>
-          <p>Total amount of todo: {todos.length}</p>
-          <p>
-            Amount of executed todo:{" "}
-            {/* {todos.filter((todo) => todo.completed).length} */}
-            {todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0)}
-          </p>
-        </div>
-        <ToDoList todos={todos} onDeleteToDo={this.deleteItem} />
+        <React.StrictMode>
+          <Counter initialValue={10} />
+          <Modal />
+          <ColorPicker options={colorPickerOption} />
+          <div>
+            <p>Total amount of todo: {todos.length}</p>
+            <p>
+              Amount of executed todo:{" "}
+              {/* {todos.filter((todo) => todo.completed).length} */}
+              {todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0)}
+            </p>
+          </div>
+          <ToDoList todos={todos} onDeleteToDo={this.deleteItem} />
+          <Form onHandlerSubmit={this.formSubmitHandler} />
+        </React.StrictMode>
       </div>
     );
   }
