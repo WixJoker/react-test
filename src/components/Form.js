@@ -1,4 +1,5 @@
 import { Component } from "react";
+import shortid from "shorttid";
 
 class Form extends Component {
   state = {
@@ -6,11 +7,14 @@ class Form extends Component {
     tag: "",
   };
 
+  nameInputId = shortid.generate();
+  tagInputId = shortid.generate();
+
   handleChange = (event) => {
-    const { name, defaultValue } = event.currentTarget;
+    const { name, value } = event.currentTarget;
 
     this.setState({
-      [name]: defaultValue,
+      [name]: value,
     });
   };
 
@@ -26,6 +30,8 @@ class Form extends Component {
     event.preventDefault();
 
     this.props.onHandlerSubmit(this.state);
+
+    this.reset();
   };
 
   reset = () => {
@@ -36,22 +42,24 @@ class Form extends Component {
     return (
       <div>
         <form onSubmit={this.handleOnSubmit}>
-          <label>
+          <label htmlFor={this.nameInputId}>
             Name
             <input
               type="text"
               name="name"
-              defaultValue={this.state.name}
-              onChange={this.handleNameChange}
+              value={this.state.name}
+              onChange={this.handleChange}
+              id={this.nameInputId}
             />
           </label>
-          <label>
+          <label htmlFor={this.tagInputId}>
             Nickname
             <input
               type="text"
               name="tag"
-              defaultValue={this.state.tag}
-              onChange={this.handleTagChange}
+              value={this.state.tag}
+              onChange={this.handleChange}
+              id={this.tagInputId}
             />
           </label>
           <button type="submit">Send</button>

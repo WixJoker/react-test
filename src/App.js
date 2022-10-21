@@ -31,29 +31,36 @@ class App extends Component {
   };
 
   formSubmitHandler = (data) => {
-    console.log(data);
-};
+    setTimeout(() => {
+      console.log(data);
+    }, 500);
+  };
 
   render() {
     const { todos } = this.state;
     return (
-      <div>
+      <>
         <React.StrictMode>
-          <Counter initialValue={10} />
-          <Modal />
-          <ColorPicker options={colorPickerOption} />
           <div>
-            <p>Total amount of todo: {todos.length}</p>
-            <p>
-              Amount of executed todo:{" "}
-              {/* {todos.filter((todo) => todo.completed).length} */}
-              {todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0)}
-            </p>
+            <Counter initialValue={10} />
+            <Modal />
+            <ColorPicker options={colorPickerOption} />
+            <div>
+              <p>Total amount of todo: {todos.length}</p>
+              <p>
+                Amount of executed todo:{" "}
+                {/* {todos.filter((todo) => todo.completed).length} */}
+                {todos.reduce(
+                  (acc, todo) => (todo.completed ? acc + 1 : acc),
+                  0
+                )}
+              </p>
+            </div>
+            <ToDoList todos={todos} onDeleteToDo={this.deleteItem} />
+            <Form onHandlerSubmit={this.formSubmitHandler} />
           </div>
-          <ToDoList todos={todos} onDeleteToDo={this.deleteItem} />
-          <Form onHandlerSubmit={this.formSubmitHandler} />
         </React.StrictMode>
-      </div>
+      </>
     );
   }
 }
