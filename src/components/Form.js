@@ -1,5 +1,5 @@
 import { Component } from "react";
-import shortid from "shorttid";
+import shortid from "shortid";
 
 class Form extends Component {
   state = {

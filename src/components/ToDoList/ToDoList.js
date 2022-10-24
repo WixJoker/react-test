@@ -2,6 +2,7 @@ import React from "react";
 import css from "./ToDoList.module.css";
 
 const ToDoList = ({ todos, onDeleteToDo }) => {
+  todos = [];
   return (
     <ul className={css.itemList}>
       {todos.map(({ id, description }) => (
