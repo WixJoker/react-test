@@ -53,6 +53,23 @@ class App extends Component {
     }, 500);
   };
 
+  // componentDidMount() {
+  //   const todos = localStorage.getItem('todos');
+  //   const todosParsed = JSON.parse(todos)
+  //   console.log(todosParsed);
+
+  //   if ({ todosParsed }) {
+  //     this.setState({ todos: todosParsed });
+  //   }
+
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.todos !== prevState.todos) {
+  //     localStorage.setItem("todos", JSON.stringify(this.state.todos));
+  //   }
+  // }
+
   // changeFilter = (event) => {
   //   this.setState({ filter: event.currentTarget.value });
   // };
